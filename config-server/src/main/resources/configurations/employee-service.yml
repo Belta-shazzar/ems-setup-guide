@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employee_management
+    username: ems
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+  cache:
+    type: redis
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+#    admin:
+#      bootstrap-servers: localhost:9092
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            loggerLevel: BASIC
+#            connectTimeout: 5000
+#            readTimeout: 5000
+
+server:
+  port: 8020
+
+kafka:
+  topic:
+    employee-created: employee-created-topic
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+application:
+  security:
+    jwt:
+      expiration: ${jwt_expiration} # a day
+      refreshTokenExpiration: ${jwt_refresh_expiration} # 7 days
+      refresh-token-key: ${jwt_refresh_secret}

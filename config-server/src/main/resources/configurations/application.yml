@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 6
+        initial-interval: 1000
+        max-interval: 2000
+        multiplier: 1.1
+      override-system-properties: false
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+application:
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # 1 day in milliseconds (24 * 60 * 60 * 1000)
+      refreshTokenExpiration: 604800000 # 7 days in milliseconds (7 * 24 * 60 * 60 * 1000)

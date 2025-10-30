@@ -1,0 +1,23 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+server:
+  port: 8083
+
+kafka:
+  topic:
+    employee-created: employee-created-topic
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

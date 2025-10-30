@@ -31,6 +31,7 @@ The Employee Management System (EMS) is a microservices-based application for ma
 ## Repositories
 
 Below are the individual service repositories that make up this project:
+PS: I have added the repositories here for easy access.
 
 - [Config Service](https://github.com/Belta-shazzar/ems-config-service)
 - [Discovery Service](https://github.com/Belta-shazzar/ems-discovery)
